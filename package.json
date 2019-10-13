@@ -1,0 +1,34 @@
+{
+  "name": "payback",
+  "version": "1.0.0",
+  "description": "The RESTful server dedicated to serve the PayUTC mobile app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simde-utc/payback.git"
+  },
+  "keywords": [
+    "backend",
+    "rest",
+    "restful",
+    "express",
+    "nodejs",
+    "postgresql",
+    "psql"
+  ],
+  "author": "ulysse31",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/simde-utc/payback/issues"
+  },
+  "homepage": "https://github.com/simde-utc/payback#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "pg": "^7.12.1"
+  }
+}
