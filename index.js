@@ -2,7 +2,6 @@ const app = require('express')();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
-const router = require('express').Router();
 const themeRouter = require('./routes/theme');
 
 app.use(morgan('combined'));
