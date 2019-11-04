@@ -1,0 +1,12 @@
+{
+  "db": {
+    "success" : {
+      "get" : "Success in getting the desired data",
+      "post" : "Data successfully inserted"
+    },
+    "theme" : {
+      "get" : "[Warning] An error has occured while fetching the theme : ",
+      "post" : "[Warning] An error has occured while posting the theme : "
+    }
+  }
+}

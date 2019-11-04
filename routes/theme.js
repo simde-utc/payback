@@ -3,23 +3,34 @@ const db = require('../db/theme');
 const router = express.Router();
 
 const { Theme } = require('../model/theme');
-const errMessages = require('../errorsMessages');
-const errfactory = require('./error_messages_factory');
+const messages = require('../messages');
+const errFactory = require('./error_messages_factory');
 
 router.get('/:id', (req, res) => {
-//TODO à alleger : c'est possible mais j'ai la flemme d'opti
 
     db.getTheme(req.params.id)
         .then((resultSet) => {
             let t = new Theme(resultSet.rows[0]);
             res.status(200).send(t.toJSON());
         }).catch((err) => {
-            res.status(500).send(errfactory.errorMessageToJson(err, errMessages.db.theme));
+            res.status(500).send(errFactory.toJson(err, messages.db.theme.get));
         });
 });
 
-router.post('/:id', (req, res) => {
-    res.send("lol");
+router.post('/', (req, res) => {
+    let t = new Theme(req.body);
+
+    if(t != null)
+        db.postTheme(t)
+            .then((resultSet) => {
+                console.log(resultSet);
+                res.status(200).send(messages.db.success.post)
+            })
+            .catch((err) => {
+                res.status(500).send(errFactory.toJson(err, messages.db.theme.post))
+            });
+    else
+        res.status(500).send(errFactory.toJson("The theme is null", messages.db.theme.post))
 });
 
 module.exports = router;

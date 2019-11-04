@@ -1,3 +1,3 @@
-module.exports.errorMessageToJson = (err, text) => {
+module.exports.toJson = (err, text) => {
     return JSON.parse("{ \"message\" : \""+ text +"\", \"err\" : \"" + err + "\" }");
 };

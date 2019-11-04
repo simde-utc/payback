@@ -1,10 +1,10 @@
 class Theme {
-    constructor(row) {
+    constructor(json) {
 
-        this.name = row.themename;
-        this.beginDate = row.begindate;
-        this.endDate = row.enddate;
-        this.colors = JSON.parse(row.colors);
+        this.name = json.themename;
+        this.beginDate = json.begindate;
+        this.endDate = json.enddate;
+        this.colors = json.colors;
 
     }
 
@@ -15,6 +15,15 @@ class Theme {
             endDate : this.endDate,
             colors : this.colors
         };
+    }
+
+    toArray(){
+        return [
+            this.name,
+            this.beginDate,
+            this.endDate,
+            this.colors
+        ];
     }
 }
 
