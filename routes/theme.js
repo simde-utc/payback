@@ -3,8 +3,8 @@ const db = require('../db/theme');
 const router = express.Router();
 
 const { Theme } = require('../model/theme');
-const messages = require('../messages');
-const errFactory = require('./error_messages_factory');
+const messages = require('./messages');
+const errFactory = require('./errorMessage');
 
 router.get('/:id', (req, res) => {
 

@@ -4,8 +4,9 @@
   "description": "The RESTful server dedicated to serve the PayUTC mobile app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint .. La date de parution"
+    "test": "mocha --timeout 10000",
+    "lint": "eslint .. La date de parution",
+    "start": "export NODE_ENV=dev && node index.js"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,9 @@
     "pg": "^7.12.1"
   },
   "devDependencies": {
-    "eslint": "^6.5.1"
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "eslint": "^6.5.1",
+    "mocha": "^6.2.2"
   }
 }

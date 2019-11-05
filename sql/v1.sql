@@ -3,8 +3,7 @@ create table if not exists theme (
     themeName varchar(255) not null,
     beginDate date check (beginDate < endDate),
     endDate date check (endDate > beginDate),
-    lightId integer references colors(id),
-    darkId integer references colors(id)
+    colors_id integer references colors(id)
 );
 
 create table if not exists colors (

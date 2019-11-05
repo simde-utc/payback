@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
 const themeRouter = require('./routes/theme');
+const config = require("./config/server_config");
 
 app.use(morgan('combined'));
 app.use(bodyParser.json());
@@ -19,6 +20,8 @@ app.use((req, res, next) => {
     res.status(404).send('Page introuvable !');
 });
 
-app.listen(8079, () => {
+app.listen(config.port, () => {
     console.log("the server is listening...");
 });
+
+module.exports = app;

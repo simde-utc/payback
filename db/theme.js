@@ -1,5 +1,6 @@
 const Pool = require('pg').Pool;
-const config = require('../db_config');
+const config = require('../config/db_config');
+const testConfig = require('../config/db_test_config');
 
 const pool = new Pool({
     user: config.user,
@@ -24,8 +25,24 @@ let postTheme = (theme) => {
 
 };
 
+let deleteTheme = (theme) => {};
+
+let deleteAll = () => {
+    if(process.env.NODE_ENV.equals(testConfig.NODE_ENV)) {
+        getAllThemes()
+            .then((resultSet) => {
+                resultSet.rows.forEach((row) => {
+                    let t = new Theme(row);
+                    deleteTheme(t);
+                })
+            })
+    }
+};
+
 module.exports = {
     getAllThemes,
     getTheme,
-    postTheme
+    postTheme,
+    deleteAll,
+    deleteTheme
 };

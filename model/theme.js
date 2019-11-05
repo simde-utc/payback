@@ -1,11 +1,9 @@
 class Theme {
     constructor(json) {
-
         this.name = json.themename;
         this.beginDate = json.begindate;
         this.endDate = json.enddate;
         this.colors = json.colors;
-
     }
 
     toJSON() {

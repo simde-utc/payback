@@ -1,5 +1,5 @@
-class Colors{
-    constructor(row){
+class Colors {
+    constructor(row) {
         this.primaryColor = row.primaryColor;
         this.secondaryColor = row.secondaryColor;
         this.more = row.more;
