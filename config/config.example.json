@@ -1,0 +1,8 @@
+{
+  "NODE_ENV": "The name given to the environment which the config file belongs to",
+  "user": "The username used to access and to log into the database server",
+  "host": "The IP address / URL of the database server",
+  "database": "The name of the accessed database within the server",
+  "password": "The password used to log in",
+  "port": "The port used by the server database"
+}

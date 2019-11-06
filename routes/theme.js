@@ -10,7 +10,7 @@ router.get('/:id', (req, res) => {
 
     db.getTheme(req.params.id)
         .then((resultSet) => {
-            let t = new Theme(resultSet.rows[0]);
+            const t = new Theme(resultSet.rows[0]);
             res.status(200).send(t.toJSON());
         }).catch((err) => {
             res.status(500).send(errFactory.toJson(err, messages.db.theme.get));
@@ -18,7 +18,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    let t = new Theme(req.body);
+    const t = new Theme(req.body);
 
     if(t != null)
         db.postTheme(t)

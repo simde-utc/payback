@@ -17,7 +17,7 @@ app.use('/theme', themeRouter);
 
 app.use((req, res, next) => {
     res.setHeader('Content-Type', 'text/plain');
-    res.status(404).send('Page introuvable !');
+    res.status(404).send('File not found');
 });
 
 app.listen(config.port, () => {

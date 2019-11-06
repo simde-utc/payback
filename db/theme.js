@@ -10,24 +10,24 @@ const pool = new Pool({
     port: config.port,
 });
 
-let getAllThemes = () => {
+const getAllThemes = () => {
     return pool.query('select * from theme');
 };
 
-let getTheme = (id) => {
+const getTheme = (id) => {
     return pool.query('select * from theme where $1 = id', [id]);
 };
 
-let postTheme = (theme) => {
-    let text = "INSERT INTO theme(themename, begindate, enddate, colors) VALUES($1, $2, $3, $4)";
-    let values = theme.toArray();
+const postTheme = (theme) => {
+    const text = "INSERT INTO theme(themename, begindate, enddate, colors) VALUES($1, $2, $3, $4)";
+    const values = theme.toArray();
     return pool.query(text, values);
 
 };
 
-let deleteTheme = (theme) => {};
+const deleteTheme = (theme) => {};
 
-let deleteAll = () => {
+const deleteAll = () => {
     if(process.env.NODE_ENV.equals(testConfig.NODE_ENV)) {
         getAllThemes()
             .then((resultSet) => {
