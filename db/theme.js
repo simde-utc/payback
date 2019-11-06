@@ -2,6 +2,11 @@ const Pool = require('pg').Pool;
 const config = require('../config/db_config');
 const testConfig = require('../config/db_test_config');
 
+const { Theme } = require('../model/theme');
+
+const errFactory = require('../routes/errorMessage');
+const messages = require('../routes/messages');
+
 const pool = new Pool({
     user: config.user,
     host: config.host,
@@ -25,18 +30,14 @@ const postTheme = (theme) => {
 
 };
 
-const deleteTheme = (theme) => {};
+const deleteTheme = (theme) => {
+    const text = "DELETE FROM theme WHERE id = $1";
+    return pool.query(text, [theme.id]);
+};
 
 const deleteAll = () => {
-    if(process.env.NODE_ENV.equals(testConfig.NODE_ENV)) {
-        getAllThemes()
-            .then((resultSet) => {
-                resultSet.rows.forEach((row) => {
-                    let t = new Theme(row);
-                    deleteTheme(t);
-                })
-            })
-    }
+    if(process.env.NODE_ENV === testConfig.NODE_ENV)
+        return pool.query("DELETE FROM theme");
 };
 
 module.exports = {

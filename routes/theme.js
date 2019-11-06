@@ -6,6 +6,20 @@ const { Theme } = require('../model/theme');
 const messages = require('./messages');
 const errFactory = require('./errorMessage');
 
+router.get('/', (req, res) => {
+    db.getAllThemes()
+        .then((resultSet) => {
+            let themes = [];
+            resultSet.rows.forEach((row) => {
+                themes.push(new Theme(row))
+            });
+            res.status(200).send(themes);
+        })
+        .catch((err) => {
+            res.status(500).send(errFactory.toJson(err, messages.db.theme.get));
+        })
+});
+
 router.get('/:id', (req, res) => {
 
     db.getTheme(req.params.id)
