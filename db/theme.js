@@ -11,11 +11,11 @@ const pool = new Pool({
 });
 
 const getAllThemes = () => {
-    return pool.query('select * from theme');
+    return pool.query('SELECT * FROM theme');
 };
 
 const getTheme = (id) => {
-    return pool.query('select * from theme where $1 = id', [id]);
+    return pool.query('SELECT * FROM theme WHERE $1 = id', [id]);
 };
 
 const postTheme = (theme) => {
@@ -35,7 +35,7 @@ const deleteAll = () => {
                     let t = new Theme(row);
                     deleteTheme(t);
                 })
-            })
+            });
     }
 };
 
