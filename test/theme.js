@@ -14,7 +14,7 @@ const index = require('../index');
 
 chai.use(chaiHttp);
 
-describe('Theme', () => {
+describe('Theme REST Testing', () => {
     before((done) => {
         db.getAllThemes()
             .then((resultSet) => {
@@ -32,7 +32,7 @@ describe('Theme', () => {
     });
 
     describe('/GET theme', () => {
-        it('it should GET all the themes', (done) => {
+        it('it should GET all the themes which are equal to 0', (done) => {
             chai.request(index)
                 .get('/theme')
                 .end((err, res) => {

@@ -39,6 +39,5 @@ module.exports = {
     getAllThemes,
     getTheme,
     postTheme,
-    deleteAll,
     deleteTheme
 };
