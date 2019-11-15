@@ -15,13 +15,19 @@ const index = require('../index');
 chai.use(chaiHttp);
 
 describe('Theme', () => {
-    beforeEach((done) => {
-        db.deleteAll()
-            .then((values) => {
+    before((done) => {
+        db.getAllThemes()
+            .then((resultSet) => {
+                resultSet.rows.forEach((row) => {
+                    db.deleteTheme(new Theme(row))
+                        .catch((err) => {
+                            console.error("An error has occured while testing : " + err)
+                        })
+                });
                 done();
             })
             .catch((err) => {
-                console.log("An error has occured while testing : " + err)
+                console.error("An error has occured while testing : " + err)
             })
     });
 

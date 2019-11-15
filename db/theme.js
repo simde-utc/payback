@@ -35,11 +35,6 @@ const deleteTheme = (theme) => {
     return pool.query(text, [theme.id]);
 };
 
-const deleteAll = () => {
-    if(process.env.NODE_ENV === testConfig.NODE_ENV)
-        return pool.query("DELETE FROM theme");
-};
-
 module.exports = {
     getAllThemes,
     getTheme,
