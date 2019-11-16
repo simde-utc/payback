@@ -8,13 +8,7 @@ const errFactory = require('./errorMessage');
 
 router.get('/', (req, res) => {
     db.getAllThemes()
-        .then((resultSet) => {
-            let themes = [];
-            resultSet.rows.forEach((row) => {
-                themes.push(new Theme(row))
-            });
-            res.status(200).send(themes);
-        })
+        .then((themes) => res.status(200).send(themes))
         .catch((err) => {
             res.status(500).send(errFactory.toJson(err, messages.db.theme.get));
         })
@@ -23,28 +17,23 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
 
     db.getTheme(req.params.id)
-        .then((resultSet) => {
-            const t = new Theme(resultSet.rows[0]);
-            res.status(200).send(t.toJSON());
-        }).catch((err) => {
+        .then((theme) => res.status(200).send(new Theme(theme)))
+        .catch((err) => {
             res.status(500).send(errFactory.toJson(err, messages.db.theme.get));
         });
 });
 
 router.post('/', (req, res) => {
-    const t = new Theme(req.body);
-
-    if(t != null)
-        db.postTheme(t)
-            .then((resultSet) => {
-                console.log(resultSet);
-                res.status(200).send(messages.db.success.post)
-            })
-            .catch((err) => {
-                res.status(500).send(errFactory.toJson(err, messages.db.theme.post))
-            });
-    else
-        res.status(500).send(errFactory.toJson("The theme is null", messages.db.theme.post))
-});
+    db.postTheme(new Theme(req.body))
+        .then(db.getTheme)
+        .then((theme) => res.status(200).send({
+            message: messages.db.success.post,
+            theme: new Theme(theme)
+        }))
+        .catch((err) => {
+            console.log(err);
+            res.status(500).send(errFactory.toJson(err, messages.db.theme.post))
+        });
+    });
 
 module.exports = router;
