@@ -1,25 +1,25 @@
 class Theme {
     constructor(json) {
-        this.name = json.themename;
-        this.beginDate = json.begindate;
-        this.endDate = json.enddate;
+        this.themename = json.themename;
+        this.begindate = json.begindate;
+        this.enddate = json.enddate;
         this.colors = json.colors;
     }
 
     toJSON() {
         return {
-            name: this.name,
-            beginDate : this.beginDate,
-            endDate : this.endDate,
+            themename: this.themename,
+            begindate : this.begindate,
+            enddate : this.enddate,
             colors : this.colors
         };
     }
 
     toArray(){
         return [
-            this.name,
-            this.beginDate,
-            this.endDate,
+            this.themename,
+            this.begindate,
+            this.enddate,
             this.colors
         ];
     }
