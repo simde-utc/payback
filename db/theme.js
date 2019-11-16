@@ -16,11 +16,11 @@ const pool = new Pool({
 });
 
 const getAllThemes = () => {
-    return pool.query('select * from theme').then((resultSet) => { return resultSet.rows });
+    return pool.query('SELECT * FROM theme').then((resultSet) => { return resultSet.rows });
 };
 
 const getTheme = (id) => {
-    return pool.query('select * from theme where $1 = id', [id]).then((resultSet) => { return resultSet.rows[0] });
+    return pool.query('SELECT * FROM theme WHERE $1 = id', [id]).then((resultSet) => { return resultSet.rows[0] });
 };
 
 const postTheme = (theme) => {
