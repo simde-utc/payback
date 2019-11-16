@@ -1,0 +1,44 @@
+{
+  "name": "payback",
+  "version": "1.0.0",
+  "description": "The RESTful server dedicated to serve the PayUTC mobile app",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --timeout 10000",
+    "lint": "eslint -fix .",
+    "start": "export NODE_ENV=dev && node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simde-utc/payback.git"
+  },
+  "keywords": [
+    "backend",
+    "rest",
+    "restful",
+    "express",
+    "nodejs",
+    "postgresql",
+    "psql"
+  ],
+  "author": "ulysse31",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/simde-utc/payback/issues"
+  },
+  "homepage": "https://github.com/simde-utc/payback#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "pg": "^7.12.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "mocha": "^6.2.2"
+  }
+}
