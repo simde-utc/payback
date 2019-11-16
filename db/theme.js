@@ -16,23 +16,23 @@ const pool = new Pool({
 });
 
 const getAllThemes = () => {
-    return pool.query('select * from theme');
+    return pool.query('select * from theme').then((resultSet) => { return resultSet.rows });
 };
 
 const getTheme = (id) => {
-    return pool.query('select * from theme where $1 = id', [id]);
+    return pool.query('select * from theme where $1 = id', [id]).then((resultSet) => { return resultSet.rows[0] });
 };
 
 const postTheme = (theme) => {
-    const text = "INSERT INTO theme(themename, begindate, enddate, colors) VALUES($1, $2, $3, $4)";
+    const text = "INSERT INTO theme(themename, begindate, enddate, colors) VALUES($1, $2, $3, $4) RETURNING id";
     const values = theme.toArray();
-    return pool.query(text, values);
+    return pool.query(text, values).then((resultSet) => { return resultSet.rows[0].id });
 
 };
 
 const deleteTheme = (theme) => {
     const text = "DELETE FROM theme WHERE id = $1";
-    return pool.query(text, [theme.id]);
+    return pool.query(text, [theme.id]).then(() => { return theme });
 };
 
 module.exports = {
